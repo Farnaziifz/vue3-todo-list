@@ -1,14 +1,30 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-const isFocuse = ref(false)
-const hasValue = ref(false)
-const inputVal = ref('')
+import { ref, watch } from 'vue'
 
-console.log( hasValue)
+type baseInputProps = {
+  type: string
+  value?: string | number | undefined
+  label: string
+}
 
-// const handleFocus = () => {
-//   isFocuse.value = true
-// }
+const props = defineProps<baseInputProps>()
+
+const isFocus = ref(false)
+const inputVal = ref(props.value)
+
+const emits = defineEmits(['update'])
+
+const handleFocus = (focus: boolean) => {
+  isFocus.value = focus
+}
+
+watch(
+  inputVal,
+  () => {
+    emits('update', inputVal.value)
+  },
+  { deep: true }
+)
 </script>
 
 <template>
@@ -16,14 +32,17 @@ console.log( hasValue)
     <label
       for=""
       class="absolute transition-all duration-300"
-      :class="{ '-top-2/4': isFocuse, 'top-0': !isFocuse }"
-      >salam</label
+      :class="{
+        '-top-1/4 text-xs ': isFocus || inputVal,
+        'top-0 text-sm': !isFocus && !inputVal,
+      }"
+      >{{ props.label }}</label
     >
     <input
-      type="text"
+      :type="props.type"
       class="bg-transparent focus:outline-none"
-      @focus="isFocuse = true"
-      @blur="isFocuse = false"
+      @focus="handleFocus(true)"
+      @blur="handleFocus(false)"
       v-model="inputVal"
     />
   </div>
@@ -32,8 +51,5 @@ console.log( hasValue)
 <style scoped>
 .input-container {
   border-color: var(--primary-color);
-}
-.test {
-  /* transition: all 3s; */
 }
 </style>
