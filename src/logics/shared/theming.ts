@@ -3,18 +3,20 @@ import {
   ThemeConfigInterface,
 } from '../../core/interfaces/theme.interface'
 
-
-
 export const themes: ThemeConfigInterface = {
   darkTheme: {
-    'primary-color': '#455363',
-    'background-color': '#1f2935',
+    'primary-color': '#9d73ff',
+    'background-color': '#1f0559',
     'text-color': '#fff',
+    'secondary-color': 'fcc200',
+    'tertiary-color': '00edff',
   },
   lightTheme: {
-    'primary-color': '#fff',
-    'background-color': '#e5e5e5',
-    'text-color': '#2d2d2d',
+    'primary-color': '#500fe9',
+    'secondary-color': 'fcc200',
+    'tertiary-color': '00edff',
+    'background-color': '#fff',
+    'text-color': '#120334',
   },
 }
 
