@@ -10,6 +10,7 @@ export const themes: ThemeConfigInterface = {
     'text-color': '#fff',
     'secondary-color': 'fcc200',
     'tertiary-color': '00edff',
+    'grayscale-color': '#8F92B2',
   },
   lightTheme: {
     'primary-color': '#500fe9',
@@ -17,6 +18,7 @@ export const themes: ThemeConfigInterface = {
     'tertiary-color': '00edff',
     'background-color': '#fff',
     'text-color': '#120334',
+    'grayscale-color': '#8C8C8C',
   },
 }
 

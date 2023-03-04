@@ -32,7 +32,7 @@ const changeThemeHandler = (theme: string) => {
           ☀️
         </div>
       </div>
-      <p class="logo font-bold">(TODO) list app</p>
+      <p class="logo font-bold text-white">(TODO) list app</p>
     </div>
   </div>
 </template>

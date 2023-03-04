@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import baseInput from '/src/presentation/components/shared/baseInput.vue'
-import { ref } from 'vue'
+import baseButton from '/src/presentation/components/shared/baseButton.vue'
+import { ref, computed } from 'vue'
 
 const username = ref()
 const password = ref()
@@ -12,6 +13,14 @@ const updateUsername = (val: string | number) => {
 const updatePassword = (val: string | number) => {
   password.value = val
 }
+
+const onSubmitLogin = () => {
+  console.log(password.value, username.value)
+}
+
+const checkForm = computed(() =>
+  !password.value && !username.value ? true : false
+)
 </script>
 <template>
   <div class="container">
@@ -28,6 +37,12 @@ const updatePassword = (val: string | number) => {
           label="password"
           type="password"
           class="mb-10"
+        />
+        <baseButton
+          :outline="false"
+          title="clock"
+          @click="onSubmitLogin"
+          :disabled="checkForm"
         />
       </div>
     </div>

@@ -4,4 +4,5 @@ export type themeItem = {
   'text-color': string
   'secondary-color': string
   'tertiary-color': string
+  'grayscale-color': string
 }
