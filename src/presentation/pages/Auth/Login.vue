@@ -1,26 +1,26 @@
 <script lang="ts" setup>
 import baseInput from '/src/presentation/components/shared/baseInput.vue'
 import baseButton from '/src/presentation/components/shared/baseButton.vue'
-import { ref, computed } from 'vue'
+import { LoginForm } from '../../../core/types/auth.type'
+import { ref, Ref } from 'vue'
+import { submitLoginHandler } from '../../../logics/specific/auth.handler'
 
-const username = ref()
-const password = ref()
+const loginData: Ref<LoginForm> = ref({
+  email: '',
+  password: '',
+})
 
-const updateUsername = (val: string | number) => {
-  username.value = val
+const updateUsername = (val: string) => {
+  loginData.value.email = val
 }
 
-const updatePassword = (val: string | number) => {
-  password.value = val
+const updatePassword = (val: string) => {
+  loginData.value.password = val
 }
 
-const onSubmitLogin = () => {
-  console.log(password.value, username.value)
+const onSubmitLogin = async () => {
+  return await submitLoginHandler(loginData.value)
 }
-
-const checkForm = computed(() =>
-  !password.value && !username.value ? true : false
-)
 </script>
 <template>
   <div class="container">
@@ -38,12 +38,7 @@ const checkForm = computed(() =>
           type="password"
           class="mb-10"
         />
-        <baseButton
-          :outline="false"
-          title="clock"
-          @click="onSubmitLogin"
-          :disabled="checkForm"
-        />
+        <baseButton :outline="false" title="clock" @click="onSubmitLogin" />
       </div>
     </div>
   </div>
