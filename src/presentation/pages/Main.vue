@@ -1,6 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import appHeader from '../../presentation/components/shared/Header.vue'
+</script>
 <template>
   <div>
-    <p>Main page</p>
+    <appHeader />
+    <router-view />
   </div>
 </template>
