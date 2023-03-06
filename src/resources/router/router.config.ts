@@ -9,7 +9,7 @@ const config: RouterOptions = {
       path: '/',
       name: 'Main',
       component: Main,
-      redirect: '/login',
+      redirect: '/auth/login',
       children: [authRouter, todoRouter],
     },
   ],

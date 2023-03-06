@@ -46,7 +46,7 @@ const onSubmitLogin = async () => {
           type="password"
           class="mb-10"
         />
-        <baseButton :outline="false" title="clock" @click="onSubmitLogin" />
+        <baseButton :outline="false" title="Login" @click="onSubmitLogin" />
       </div>
     </div>
   </div>
