@@ -29,8 +29,11 @@ const onSubmitRegister = async () => {
 </script>
 <template>
   <div class="container">
-    <div class="login-container flex justify-center items-center h-full">
-      <div class="login-form py-14 px-8 rounded-2xl border w-80">
+    <div
+      class="register-container flex justify-center items-center h-full flex-col"
+    >
+      <h3 class="mb-4">Resgiter Form</h3>
+      <div class="register-form py-14 px-8 rounded-2xl border w-80">
         <baseInput
           @update="updateUsername"
           label="username"
@@ -49,11 +52,11 @@ const onSubmitRegister = async () => {
   </div>
 </template>
 <style scoped>
-.login-container {
+.register-container {
   height: calc(100vh - 64px);
 }
 
-.login-form {
+.register-form {
   border-color: var(--primary-color);
 }
 </style>

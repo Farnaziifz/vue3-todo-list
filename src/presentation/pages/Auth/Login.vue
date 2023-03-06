@@ -29,7 +29,10 @@ const onSubmitLogin = async () => {
 </script>
 <template>
   <div class="container">
-    <div class="login-container flex justify-center items-center h-full">
+    <div
+      class="login-container flex justify-center items-center h-full flex-col"
+    >
+      <h3 class="mb-4">Login Form</h3>
       <div class="login-form py-14 px-8 rounded-2xl border w-80">
         <baseInput
           @update="updateUsername"
