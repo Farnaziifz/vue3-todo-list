@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import appHeader from '../../presentation/components/shared/Header.vue'
+import { defineAsyncComponent } from 'vue'
 
 import { useMainStore } from '../../resources/store/main.store'
 
+const appHeader = defineAsyncComponent(
+  () => import('../../presentation/components/shared/Header.vue')
+)
+
 const mainStore = useMainStore()
-console.log(mainStore.$state.message)
 </script>
 <template>
   <div>

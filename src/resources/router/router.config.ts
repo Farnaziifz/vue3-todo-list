@@ -1,6 +1,8 @@
 import { createWebHistory, RouterOptions } from 'vue-router'
-import Main from '../../presentation/pages/Main.vue'
 import { authRouterConfig } from './authRoute'
+
+const Main = () => import('../../presentation/pages/Main.vue')
+
 const config: RouterOptions = {
   routes: [
     {

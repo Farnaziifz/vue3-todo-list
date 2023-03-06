@@ -1,9 +1,14 @@
 <script lang="ts" setup>
-import baseInput from '/src/presentation/components/shared/baseInput.vue'
-import baseButton from '/src/presentation/components/shared/baseButton.vue'
 import { LoginForm } from '../../../core/types/auth.type'
-import { ref, Ref } from 'vue'
+import { ref, Ref, defineAsyncComponent } from 'vue'
 import { submitLoginHandler } from '../../../logics/specific/auth.handler'
+
+const baseInput = defineAsyncComponent(
+  () => import('/src/presentation/components/shared/baseInput.vue')
+)
+const baseButton = defineAsyncComponent(
+  () => import('/src/presentation/components/shared/baseButton.vue')
+)
 
 const loginData: Ref<LoginForm> = ref({
   email: '',
