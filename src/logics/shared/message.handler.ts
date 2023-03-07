@@ -5,6 +5,10 @@ export const showMessageToUser = (message: messageProps) => {
   const mainStore = useMainStore()
   message.show = true
   mainStore.setMessage(message)
+  setTimeout(() => {
+    message.show = false
+    mainStore.setMessage(message)
+  }, 3000)
 }
 
 export const showSuccessMessage = (text = 'Success', key = 1) => {

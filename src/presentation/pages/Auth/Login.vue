@@ -2,6 +2,9 @@
 import { LoginForm } from '../../../core/types/auth.type'
 import { ref, Ref, defineAsyncComponent } from 'vue'
 import { submitLoginHandler } from '../../../logics/specific/auth.handler'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const baseInput = defineAsyncComponent(
   () => import('/src/presentation/components/shared/baseInput.vue')
@@ -24,7 +27,8 @@ const updatePassword = (val: string) => {
 }
 
 const onSubmitLogin = async () => {
-  return await submitLoginHandler(loginData.value)
+  await submitLoginHandler(loginData.value)
+  router.push({ name: 'todo-list' })
 }
 </script>
 <template>
