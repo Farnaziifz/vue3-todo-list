@@ -13,7 +13,7 @@ const appHeader = defineAsyncComponent(
 </script>
 
 <template>
-  <div>
+  <div class="relative h-100">
     <appHeader />
     <!-- <notify
       :type="mainStore.message.type"
