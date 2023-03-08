@@ -47,7 +47,6 @@ const onSubmitRegister = async () => {
           class="mb-10"
         />
         <baseButton
-          :outline="false"
           title="Register"
           @click="onSubmitRegister"
         />

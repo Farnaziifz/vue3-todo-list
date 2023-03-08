@@ -4,7 +4,7 @@ import { ref, watch } from 'vue'
 type baseInputProps = {
   type: string
   value?: string | number | undefined
-  label: string
+  label: string,
 }
 
 const props = defineProps<baseInputProps>()
@@ -40,7 +40,7 @@ watch(
     >
     <input
       :type="props.type"
-      class="bg-transparent focus:outline-none"
+      class="bg-transparent focus:outline-none w-full"
       @focus="handleFocus(true)"
       @blur="handleFocus(false)"
       v-model="inputVal"

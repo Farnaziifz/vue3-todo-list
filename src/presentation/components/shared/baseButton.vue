@@ -10,7 +10,7 @@ const props = defineProps<baseButtonProps>()
 </script>
 
 <template>
-  <button class="button-compponent w-full rounded-lg p-2 text-white">
+  <button class="button-compponent w-full rounded-lg p-2 text-white h-14">
     {{ props.title }}
   </button>
 </template>

@@ -10,7 +10,7 @@ export const submitLoginHandler = async (loginData: LoginForm) => {
   if (res?.data)
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    localStorage.setItem('token', 'Bearer ' + res?.data)
+    localStorage.setItem('token', 'Bearer ' + res?.data.access_token)
 }
 
 export const submitRegisterHandler = async (registerData: RegisterForm) => {
