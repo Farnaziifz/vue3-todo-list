@@ -10,7 +10,7 @@ type baseInputProps = {
 const props = defineProps<baseInputProps>()
 
 const isFocus = ref(false)
-const inputVal = ref(props.value)
+const inputVal = ref()
 
 const emits = defineEmits(['update'])
 
@@ -44,6 +44,7 @@ watch(
       @focus="handleFocus(true)"
       @blur="handleFocus(false)"
       v-model="inputVal"
+      :value="inputVal"
     />
   </div>
 </template>

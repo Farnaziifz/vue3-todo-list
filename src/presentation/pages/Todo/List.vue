@@ -2,7 +2,9 @@
 import { defineAsyncComponent, onBeforeMount, ref } from 'vue'
 import { todoItem } from '../../../core/types/todo.type'
 import { getTodoListHandler } from '../../../logics/specific/todo.handler'
-
+// import { goToPath } from '../../../logics/shared/route.handler'
+import { useRouter } from 'vue-router'
+const rr = useRouter()
 const todoItemComponent = defineAsyncComponent(
   () => import('/src/presentation/components/specific/todoItem.vue')
 )
@@ -18,6 +20,10 @@ const todoData = ref('')
 
 onBeforeMount(async () => {
   const todoData = await getTodoListHandler()
+  if (todoData?.status === 401) {
+    console.log('salawefcwefweddddm', todoData)
+    rr.push('/auth/login')
+  }
   if (todoData) serverData.value = todoData
 })
 
@@ -32,7 +38,7 @@ const onSubmitItem = () => {
     title: todoData.value,
     status: false,
   })
-  updatetodoList('')
+  todoData.value = ''
 }
 
 const handleStatus = (val: string | number) => {
@@ -46,6 +52,7 @@ const handleStatus = (val: string | number) => {
   <div class="container">
     <div class="pb-20">
       <div class="flex items-center">
+        <!-- -->
         <baseInput
           @update="updatetodoList"
           label="Add todo Item"
@@ -61,6 +68,7 @@ const handleStatus = (val: string | number) => {
           :title="item.title"
           :id="item.id"
           @update="handleStatus(item.id)"
+          ref="test"
         />
       </div>
     </div>
