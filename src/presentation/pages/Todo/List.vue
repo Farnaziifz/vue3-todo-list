@@ -1,12 +1,21 @@
 <script lang="ts" setup>
 import { defineAsyncComponent, onBeforeMount, ref } from 'vue'
 import { todoItem } from '../../../core/types/todo.type'
-import { getTodoListHandler } from '../../../logics/specific/todo.handler'
-// import { goToPath } from '../../../logics/shared/route.handler'
+import {
+  getTodoWithPaginationHandler,
+  getTodoListHandler,
+} from '../../../logics/specific/todo.handler'
 import { useRouter } from 'vue-router'
+import _ from 'lodash'
+
 const rr = useRouter()
+
 const todoItemComponent = defineAsyncComponent(
   () => import('/src/presentation/components/specific/todoItem.vue')
+)
+
+const basePagination = defineAsyncComponent(
+  () => import('/src/presentation/components/shared/basePagination.vue')
 )
 const baseInput = defineAsyncComponent(
   () => import('/src/presentation/components/shared/baseInput.vue')
@@ -16,23 +25,32 @@ const baseButton = defineAsyncComponent(
 )
 
 const serverData = ref()
+const serverDataCount = ref()
 const todoData = ref('')
+const activePage = ref(1)
 
 onBeforeMount(async () => {
-  const todoData = await getTodoListHandler()
+  const todoData = await getTodoWithPaginationHandler(activePage.value)
+  const todoDataCount = await getTodoListHandler()
+
   if (todoData?.status === 401) {
-    console.log('salawefcwefweddddm', todoData)
     rr.push('/auth/login')
   }
   if (todoData) serverData.value = todoData
+  if (todoDataCount) serverDataCount.value = todoDataCount
 })
+
+const changePage = async (page: string | number) => {
+  activePage.value = _.toNumber(page)
+  const todoData = await getTodoWithPaginationHandler(page)
+  if (todoData) serverData.value = todoData
+}
 
 const updatetodoList = (value: string) => {
   todoData.value = value
 }
 
 const onSubmitItem = () => {
-  console.log(typeof serverData.value)
   serverData.value.push({
     id: serverData.value.length + 1,
     title: todoData.value,
@@ -52,7 +70,6 @@ const handleStatus = (val: string | number) => {
   <div class="container">
     <div class="pb-20">
       <div class="flex items-center">
-        <!-- -->
         <baseInput
           @update="updatetodoList"
           label="Add todo Item"
@@ -71,6 +88,12 @@ const handleStatus = (val: string | number) => {
           ref="test"
         />
       </div>
+      <basePagination
+        class="mt-10"
+        :total="serverDataCount?.length"
+        :page="activePage"
+        @clickPage="changePage"
+      />
     </div>
   </div>
 </template>
