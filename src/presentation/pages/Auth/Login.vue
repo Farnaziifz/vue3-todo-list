@@ -52,6 +52,12 @@ const onSubmitLogin = async () => {
         />
         <baseButton title="Login" @click="onSubmitLogin" />
       </div>
+      <p class="mt-10">
+        don't Have account?
+        <router-link to="/auth/register" class="font-bold"
+          >Register</router-link
+        >
+      </p>
     </div>
   </div>
 </template>
