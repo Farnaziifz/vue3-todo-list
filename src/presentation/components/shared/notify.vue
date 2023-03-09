@@ -10,9 +10,9 @@ const props = defineProps<messageProps>()
 </script>
 
 <template>
-  <div class="relative h-screen w-full">
+  <div class="relative  w-full bg-transparent">
     <div
-      class="w-72 h-10 absolute left-1/2 translate-x-[-50%] flex items-center justify-center text-white rounded-lg transition-all top-[50px]"
+      class="w-72 h-10 absolute left-1/2 translate-x-[-50%] flex items-center justify-center text-white rounded-lg transition-all top-[100px]"
       :class="{
         success: props.type === 'success',
         error: props.type === 'error',
