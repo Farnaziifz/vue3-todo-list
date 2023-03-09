@@ -8,7 +8,7 @@ import {
 import { useRouter } from 'vue-router'
 import _ from 'lodash'
 
-const rr = useRouter()
+const router = useRouter()
 
 const todoItemComponent = defineAsyncComponent(
   () => import('/src/presentation/components/specific/todoItem.vue')
@@ -32,9 +32,8 @@ const activePage = ref(1)
 onBeforeMount(async () => {
   const todoData = await getTodoWithPaginationHandler(activePage.value)
   const todoDataCount = await getTodoListHandler()
-
   if (todoData?.status === 401) {
-    rr.push('/auth/login')
+    router.push('/auth/login')
   }
   if (todoData) serverData.value = todoData
   if (todoDataCount) serverDataCount.value = todoDataCount

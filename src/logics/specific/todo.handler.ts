@@ -1,5 +1,4 @@
 import { todoApi } from '../../resources/api/todo'
-import { todoList } from '../../core/types/todo.type'
 
 const api = todoApi()
 
