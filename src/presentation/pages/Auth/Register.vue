@@ -2,6 +2,9 @@
 import { RegisterForm } from '../../../core/types/auth.type'
 import { ref, Ref, defineAsyncComponent } from 'vue'
 import { submitRegisterHandler } from '../../../logics/specific/auth.handler'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const baseInput = defineAsyncComponent(
   () => import('/src/presentation/components/shared/baseInput.vue')
@@ -24,7 +27,8 @@ const updatePassword = (val: string) => {
 }
 
 const onSubmitRegister = async () => {
-  return await submitRegisterHandler(registerData.value)
+  await submitRegisterHandler(registerData.value)
+  router.push({ name: 'todo-list' })
 }
 </script>
 <template>
@@ -46,10 +50,7 @@ const onSubmitRegister = async () => {
           type="password"
           class="mb-10"
         />
-        <baseButton
-          title="Register"
-          @click="onSubmitRegister"
-        />
+        <baseButton title="Register" @click="onSubmitRegister" />
       </div>
     </div>
   </div>

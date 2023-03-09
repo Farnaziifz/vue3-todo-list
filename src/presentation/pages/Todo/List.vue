@@ -33,6 +33,7 @@ onBeforeMount(async () => {
   const todoData = await getTodoWithPaginationHandler(activePage.value)
   const todoDataCount = await getTodoListHandler()
   if (todoData?.status === 401) {
+    localStorage.clear()
     router.push('/auth/login')
   }
   if (todoData) serverData.value = todoData
